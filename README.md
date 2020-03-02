@@ -3,18 +3,19 @@
 [![Coverage Status](https://coveralls.io/repos/github/o360/frontend/badge.svg?branch=master)](https://coveralls.io/github/o360/frontend?branch=master)
 
 * [General info](#general-info)
+* [Local run](#local-run)
+    * [Environment Configuration](#environment-configuration)
+         * [Social login](#social-login)
+    * [Local build & serve](#local-build--serve)
 * [Development](#development)
     * [Prerequisites](#prerequisites)
     * [Installation](#installation)
-    * [Environment Configuration](#environment-configuration)
-        * [Social login](#social-login)
     * [Development server](#development-server)
     * [Build](#build)
     * [Testing](#testing)
 * [IDE Specific Usage](#ide-specific-usage)
     * [Intellij IDEA / WebStorm](#intellij-idea--webstorm)
    
-
 
 ## General info
 
@@ -23,28 +24,7 @@ Frontend project for Open360. The Open360 is a system to create, manage and run 
 ### Related project
 [Open360 Backend](https://github.com/o360/backend)
 
-
-#Development
-## Prerequisites
-
-Node.js - v12.x and yarn
-
-* ```sudo curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -```
-* ```sudo apt-get update```
-* ```sudo apt-get install nodejs```
-* ```sudo npm install -g npm```
-* ```sudo npm install -g yarn```
-
-## Installation
-
-To get started locally, follow these instructions:
-
-1. If you haven't done it already, [make a fork of this repo](https://github.com/o360/frontend/fork).
-1. Clone to your local computer using `git`.
-1. Make sure that you have Node 12 or later installed. See instructions [here](https://nodejs.org/en/download/).
-1. Make sure that you have `yarn` installed; see instructions [here](https://yarnpkg.com/lang/en/docs/install/).
-1. Run `yarn` (no arguments) from the root of your clone of this project to install dependencies.
-
+## Local run
 ## Environment Configuration
 
 To set up all necessary variables config file should be provided.
@@ -88,6 +68,37 @@ Facebook: `scope: "email,user_gender""`
 VK: `scope: "email"`  
 Google: `scope: "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email"`  
  
+## Local build & serve
+The easiest way to run the application is running it in docker.
+Make sure you have docker installed. To build docker image run the following command from root of the project folder:  
+`docker build -f .docker/Dockerfile -t <image_name> .`  
+Don't forget about the dot at the end of the command.  
+To serve the project locally run  
+`docker run --name <container_name> -v </path/to/config.json>:/var/www/assets/config.json -d -p <port>:80 <image_name>`  
+Make sure `</path/to/config.json>` is absolute path. To read more about configuration file go to [environment configuration section](#environment-configuration).   
+The application will be served at `http://localhost:<port>`.
+
+## Development
+## Prerequisites
+
+Node.js - v12.x and yarn
+
+* ```sudo curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -```
+* ```sudo apt-get update```
+* ```sudo apt-get install nodejs```
+* ```sudo npm install -g npm```
+* ```sudo npm install -g yarn```
+
+## Installation
+
+To get started locally, follow these instructions:
+
+1. If you haven't done it already, [make a fork of this repo](https://github.com/o360/frontend/fork).
+1. Clone to your local computer using `git`.
+1. Make sure that you have Node 12 or later installed. See instructions [here](https://nodejs.org/en/download/).
+1. Make sure that you have `yarn` installed; see instructions [here](https://yarnpkg.com/lang/en/docs/install/).
+1. Run `yarn` (no arguments) from the root of your clone of this project to install dependencies.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:5555/`. The app will automatically reload if you change any of the source files.
